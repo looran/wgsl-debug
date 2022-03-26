@@ -1,9 +1,10 @@
-## wgsl-debug - Typescript library providing print-like function to WGSL shader
+### WGSL-debug - Typescript library providing print-like function to WGSL shader
 
-[![wgsl-debug example](https://looran.github.io/wgsl-debug-demo/wgsldebug_example_1024.gif)](https://looran.github.io/wgsl-debug-demo/wgsldebug_example.webm)
+[![wgsl-debug example](https://looran.github.io/wgsl-debug-demo/wgsldebug_example_crop_900.gif)](https://looran.github.io/wgsl-debug-demo/wgsldebug_example_crop.webm)
 
-wgsl-debug provides print-like function for WGSL shaders to print numbers through javascript console or user callback.
-wgsl-debug-table provides a component to easily display the debugging data into dynamically updated HTML table.
+`wgsl-debug` provides print-like function for WGSL shaders to print numbers through javascript console or user callback.
+
+`wgsl-debug-table` provides a component to easily display the debugging data into dynamically updated HTML table.
 
 Internaly it works by copying the debug data from GPU to a buffer, mapped and copied at each pass back to CPU to extract the data.
 
@@ -22,7 +23,7 @@ dbg_f32m(mark: i32, val: f32); // variable name
 ```
 The comment on the debug call line will be used as the variable name.
 
-## Build
+### Build
 
 * wgsl-debug:
 ```
@@ -37,7 +38,7 @@ npm install
 npm run build
 ```
 
-## Example usage: display debug values in HTML table
+### Example usage: display debug values in HTML table
 
 You can use [example/main.ts](example/main.ts) to get started:
 ```
@@ -48,7 +49,7 @@ npm run preview
 ```
 
 
-### debugging setup in CPU javascript code
+#### debugging setup in CPU javascript code
 
 ```
 // import wgsl-debug and wgsl-debug-table
@@ -83,7 +84,7 @@ debug.fetch(cmd_encoder);
 await debug.process();
 ```
 
-### debug calls in GPU shader code
+#### debug calls in GPU shader code
 
 ```
 // call dbg_init
@@ -105,7 +106,7 @@ dbg_i32m(my_spurious_var_i, 1); // spurious var i
 dbg_f32m(my_spurious_var_f, 2); // spurious var f
 ```
 
-## Example usage: print debug values in the javascript console
+### Example usage: print debug values in the javascript console
 
 Changes for the javascript code:
 
@@ -116,7 +117,7 @@ Changes for the javascript code:
 await debug.post()
 ```
 
-## Example usage: javascript callback function containing debug values
+### Example usage: javascript callback function containing debug values
 
 Changes for the javascript code:
 
