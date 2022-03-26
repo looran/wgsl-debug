@@ -1,0 +1,77 @@
+<html>
+<head>
+	<title>wgsl-debug example</title>
+	<style>
+	body {
+		display: flex;
+		flex-direction: row;
+		flex-wrap: nowrap;
+	}
+	#canvas_box {
+		display: flex;
+	}
+	#control {
+		padding: 2px;
+	}
+	#shader_src {
+		margin-right: 4px;
+		font-size: small;
+	}
+	#comments {
+		font-style: italic;
+	}
+	#stats {
+		margin: 2px;
+		font-size: small;
+	}
+	mark {
+		background-color: #0000FF66;
+		color: black;
+	}
+	#debug-div {
+                background-color: #0000FF99;
+                z-index: 1;
+                overflow-x: auto;
+	}
+	h2 {
+		text-align: center;
+	}
+        table  { border-collapse: collapse; width: 100%; }
+        th, td { padding: 3px 3px; white-space: nowrap; font-size: small; }
+        th     { background:#0000FFBB; }
+        .debug-output-table { overflow: auto; height: 90%; }
+        .debug-output-table table { overflow-y: auto; height: 100px; }
+        .debug-output-table thead th { position: sticky; top: 0; z-index: 1; }
+        .debug-output-table tbody th { position: sticky; left: 0; }
+        .debug-output-table tbody tr { height: 1ex; }
+        .debug-output-controls { text-align: center; }
+        .debug-output-timeline { width: 40%; }
+	.hidden {
+                visibility: hidden !important;
+                display: none !important;
+        }
+	</style>
+</head>
+<body>
+	<div id="left">
+		<h2>WGSL-debug example</h2>
+		<div id="canvas_box">
+			<canvas id="canvas" height="200" width="400"></canvas>
+			<div id="control">
+				<label><input type="checkbox" id="compute_active" checked=true/>compute</label><br/>
+				<label><input type="checkbox" id="debug_active" checked=true/>debug active</label><br/>
+				<label><input type="checkbox" id="debug_visible" checked=true/>debug visible</label><br/>
+				<input type="number" id="debug_uidmax" min="1"/><br/>
+				<button id="debug_uidmax_set">set limit</button>
+				<pre id="stats"></pre>
+			</div>
+		</div>
+		<div id="comments">Red points coordinates are updated in compute shader.<br/>
+The values at each pass are displayed in the table by <a href="https://github.com/looran/wgsl-debug/">wgsl-debug</a>.
+		</div>
+		<pre id="shader_src"></pre>
+	</div>
+	<div id="debug-div"></div>
+	<script type="module" src="/main.ts"></script>
+</body>
+</html>

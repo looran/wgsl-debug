@@ -1,0 +1,52 @@
+{
+	"include": ["../main.ts"],
+	"compilerOptions": {
+		/* Speed */
+		"skipLibCheck": true,
+		"incremental": true,
+
+		/* Type Checking */
+		"allowUnreachableCode": false,
+		"allowUnusedLabels": false,
+		"alwaysStrict": true,
+		"exactOptionalPropertyTypes": false,
+		"noFallthroughCasesInSwitch": true,
+		"noImplicitAny": true,
+		"noImplicitOverride": true,
+		"noImplicitReturns": true,
+		"noImplicitThis": true,
+		"noPropertyAccessFromIndexSignature": true,
+		"noUncheckedIndexedAccess": true,
+		"noUnusedLocals": true,
+		"noUnusedParameters": true,
+		"strict": true,
+		"strictBindCallApply": true,
+		"strictFunctionTypes": true,
+		"strictNullChecks": false,
+		"strictPropertyInitialization": false,
+		"useUnknownInCatchVariables": true,
+
+		/* Modules */
+		"module": "system",
+		"moduleResolution": "node",
+
+		/* Emit */ 
+		// "declaration": false,
+		"declaration": true,
+		//"noEmit": true,
+		//"outDir": "dist",
+		"removeComments": false,
+		"sourceMap": true,
+
+		/* JavaScript Support */
+		"allowJs": false,
+
+		/* Interop Constraints */
+		"esModuleInterop": true,
+		// "forceConsistentCasingInFileNames": true,
+		//"isolatedModules": true, // because webpack is used for bundling
+
+		/* Language and Environment */
+		"target": "es2020"
+	}
+}

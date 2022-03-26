@@ -1,0 +1,22 @@
+{
+  "name": "wgsl-debug-example-table",
+  "version": "0.0.0",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build -c config/vite.config.ts",
+    "watch": "while :; do echo ================================================================================; date; echo; vite build -c config/vite.config.ts -w; date; echo; sleep 5; done",
+    "preview": "vite preview -c config/vite.config.ts"
+  },
+  "dependencies": {
+    "wgsl-debug": "..",
+    "wgsl-debug-table": "../wgsl-debug-table/"
+  },
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^5.12.1",
+    "@typescript-eslint/parser": "^5.12.1",
+    "@webgpu/types": "^0.1.13",
+    "typescript": "^4.5.5",
+    "vite": "^2.7.13",
+    "vite-plugin-checker": "0.3.4"
+  }
+}

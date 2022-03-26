@@ -1,0 +1,28 @@
+{
+  "name": "wgsl-debug",
+  "version": "0.0.1",
+  "main": "./dist/wgsl-debug.umd.js",
+  "module": "./dist/wgsl-debug.es.js",
+  "types": "./wgsl-debug.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/wgsl-debug.es.js",
+      "require": "./dist/wgsl-debug.umd.js"
+    }
+  },
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc --project config/tsconfig.json --emitDeclarationOnly --outDir . --strict && vite build -c config/vite.config.ts",
+    "watch": "while :; do echo ================================================================================; date; echo; tsc --project config/tsconfig.json --emitDeclarationOnly --outDir . --strict && vite build -c config/vite.config.ts -w; date; echo; sleep 5; done",
+    "lint": "eslint src/ --ext .ts,.tsx -c config/eslintrc"
+  },
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^5.12.1",
+    "@typescript-eslint/parser": "^5.12.1",
+    "@webgpu/types": "^0.1.13",
+    "eslint": "^8.10.0",
+    "typescript": "^4.5.5",
+    "vite": "^2.7.13",
+    "vite-plugin-checker": "0.3.4"
+  }
+}
