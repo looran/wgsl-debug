@@ -1,4 +1,4 @@
-### WGSL-debug - Typescript library providing print-like function to WGSL shader
+### Typescript library providing print-like function to WGSL shader
 
 [![wgsl-debug example](https://looran.github.io/wgsl-debug-demo/wgsldebug_example_crop_900.gif)](https://looran.github.io/wgsl-debug-demo/wgsldebug_example_crop.webm)
 
