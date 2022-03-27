@@ -33,7 +33,7 @@ fn dbg_u32m(mark: i32, val: u32) {}
 fn dbg_i32m(mark: i32, val: i32) {}
 fn dbg_f32m(mark: i32, val: f32) {}
 fn dbg_32m(mark: i32, val: f32, vtype: i32) {}`;
-	private shader_active = () => `@group(${this.bindgroup_num}) @binding(0) var<storage,read_write> _dbg: array<u32>;
+	private shader_active = () => `@group(${this.bindgroup_index}) @binding(0) var<storage,read_write> _dbg: array<u32>;
 
 var<private> _dbg_unit: u32;
 
@@ -68,8 +68,8 @@ fn dbg_f32(val: f32) { dbg_f32m(${WGSL_debug.BUF_ENTRY_MARK_UNSET}, val); }`;
 	private device: GPUDevice;
 	private buf_unit_size = () => WGSL_debug.BUF_UNIT_HEADER_SIZE + this.buf_unit_entries_count * WGSL_debug.BUF_ENTRY_SIZE;
 	private buf_unit_size_bytes = () => Uint32Array.BYTES_PER_ELEMENT * this.buf_unit_size();
-	private bindgroup: GPUBindGroup;
-	private bindgroup_num: number;
+	private bindgroups: Map<number,GPUBindGroup>;	// bindgroup for each pipeline stage
+	private bindgroup_index: number;
 	private buf_unit_entries_count: number;
 	private unit_count: number;
 	private buf_size: number;
@@ -84,8 +84,9 @@ fn dbg_f32(val: f32) { dbg_f32m(${WGSL_debug.BUF_ENTRY_MARK_UNSET}, val); }`;
 	public buf: GPUBuffer;
 	public output: WGSL_debug_output;
 
-	public constructor(bindgroup_num: number, buf_unit_entries_count?: number) {
-		this.bindgroup_num = bindgroup_num;
+	public constructor(bindgroup_index: number, buf_unit_entries_count?: number) {
+		this.bindgroups = new Map();
+		this.bindgroup_index = bindgroup_index;
 		this.buf_unit_entries_count = (buf_unit_entries_count === undefined) ? WGSL_debug.BUF_UNIT_ENTRIES_COUNT_DEFAULT : buf_unit_entries_count;
 		this.record = new Array();
 		this.pass_n = 0;
@@ -149,15 +150,16 @@ fn dbg_f32(val: f32) { dbg_f32m(${WGSL_debug.BUF_ENTRY_MARK_UNSET}, val); }`;
 		}
 	}
 
-	public create_bindgroup(pipeline: GPUComputePipeline) {
-		this.bindgroup = this.device.createBindGroup({
-			layout: pipeline.getBindGroupLayout(this.bindgroup_num),
+	public create_bindgroup(pipeline: GPUComputePipeline, stage?: number) {
+		const bindgroup = this.device.createBindGroup({
+			layout: pipeline.getBindGroupLayout(this.bindgroup_index),
 			entries: [ { binding: 0, resource: {buffer: this.buf } } ],
 		});
+		this.bindgroups.set(stage, bindgroup);
 	}
 
-	public set_bindgroup(pass: GPUComputePassEncoder) {
-		pass.setBindGroup(this.bindgroup_num, this.bindgroup);
+	public set_bindgroup(pass: GPUComputePassEncoder, stage?: number) {
+		pass.setBindGroup(this.bindgroup_index, this.bindgroups.get(stage));
 	}
 
 	public fetch(cmd: GPUCommandEncoder) {
