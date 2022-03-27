@@ -1,0 +1,14 @@
+config/tsconfig.tsbuildinfo
+dist/
+example/config/tsconfig.tsbuildinfo
+example/node_modules/
+example/package-lock.json
+node_modules/
+package-lock.json
+tsconfig.tsbuildinfo
+wgsl-debug-table/dist/
+wgsl-debug-table/node_modules/
+wgsl-debug-table/package-lock.json
+wgsl-debug-table/tsconfig.tsbuildinfo
+wgsl-debug-table/wgsl-debug-table.d.ts
+wgsl-debug.d.ts
