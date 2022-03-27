@@ -47,7 +47,7 @@ fn dbg_32m(mark: i32, val: u32, vtype: i32) {
 	/* limit entries count, but still store the total number of calls */
 	var entry_count = _dbg[_dbg_unit];
 	_dbg[_dbg_unit] = entry_count + 1u;
-	if (entry_count == ${this.buf_unit_entries_count}u) {
+	if (entry_count >= ${this.buf_unit_entries_count}u) {
 		return;
 	}
 
