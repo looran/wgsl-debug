@@ -1,8 +1,10 @@
 ### Typescript library providing print-like function to WGSL shader
 
-[![wgsl-debug example](https://looran.github.io/wgsl-debug-demo/wgsldebug_example_crop_900.gif)](https://looran.github.io/wgsl-debug-demo/wgsldebug_example_crop.webm)
+| [![wgsl-debug example](https://looran.github.io/wgsl-debug-demo/wgsldebug_example_crop_900.gif)](https://looran.github.io/wgsl-debug-example/) |
+|:--:|
+| *[Go to example](https://looran.github.io/wgsl-debug-example/) - [View code](example/main.ts)* |
 
-`wgsl-debug` provides print-like function for WGSL shaders to print numbers through javascript console or user callback.
+`wgsl-debug` provides print-like function for [WebGPU](https://www.w3.org/TR/webgpu/) [WGSL](https://www.w3.org/TR/WGSL/) shaders to print numbers through javascript console or user callback.
 
 `wgsl-debug-table` provides a component to easily display the debugging data into dynamically updated HTML table.
 
