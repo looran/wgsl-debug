@@ -25,26 +25,19 @@ dbg_f32m(mark: i32, val: f32); // variable name
 ```
 The comment on the debug call line will be used as the variable name.
 
-### Build
+### Install
 
-* wgsl-debug:
 ```
-npm install
-npm run build
-```
-
-* wgsl-debug-table:
-```
-cd wgsl-debug-table/
-npm install
-npm run build
+npm install wgsl-debug
+npm install wgsl-debug-table
 ```
 
 ### Usage: display debug values in HTML table
 
-You can use [example/main.ts](example/main.ts) to get started:
+You can have a look at [example/main.ts](example/main.ts) to get started:
 ```
-cd example/
+git clone https://github.com/looran/wgsl-debug/
+cd wgsl-debug/example/
 npm install
 npm run build
 npm run preview
@@ -127,4 +120,19 @@ Changes for the javascript code:
 // no call to debug.set_output()
 // cb_func gets called with an array of the values from the shader dbg_*() calls of the current pass
 await debug.post(cb_func)
+```
+
+### Build from source
+
+* wgsl-debug:
+```
+npm install
+npm run build
+```
+
+* wgsl-debug-table:
+```
+cd wgsl-debug-table/
+npm install
+npm run build
 ```
