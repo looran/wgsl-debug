@@ -175,6 +175,7 @@ fn dbg_f32(val: f32) { dbg_f32m(${WGSL_debug.BUF_ENTRY_MARK_UNSET}, val); }`;
 
 		/* read retrieved data to pass_data */
 		pass_data = Array.from(Array(this.unit_count), () => new Array());
+		const warnings = new Array(); // [ [ uid, entry_count ], ... ]
 		for (var uid=0; uid < this.unit_count; uid+=1) { /* for each unit */
 			if (this.hang_detect("process")) {
 				break;
@@ -183,8 +184,7 @@ fn dbg_f32(val: f32) { dbg_f32m(${WGSL_debug.BUF_ENTRY_MARK_UNSET}, val); }`;
 			const entry_count = buf_u32[unit_off];
 			if (entry_count > 0) {
 				if (entry_count > this.buf_unit_entries_count) {
-					console.warn(`WGSL debug: ${entry_count} debug calls where made from unit_id=${uid}, but only the first ${this.buf_unit_entries_count} where recorded\n`
-						+ 'Consider increasing buf_unit_entries_count.');
+					warnings.push([uid, entry_count])
 				}
 				for (var entry=0; entry < Math.min(entry_count, this.buf_unit_entries_count); entry++) { /* for each debug entry of this unit */
 					/* read value with appropriate type, and mark */
@@ -207,6 +207,12 @@ fn dbg_f32(val: f32) { dbg_f32m(${WGSL_debug.BUF_ENTRY_MARK_UNSET}, val); }`;
 					});
 				}
 			}
+		}
+		if (warnings.length > 0) {
+			const uids = warnings.map((x) => {return `${x[0]}[${x[1]}]`}).join(",")
+			console.warn(`WGSL debug: the following uids performed too many debug calls: ${uids}\n`
+					+ `Only the first ${this.buf_unit_entries_count} calls are recorded per uid\n`
+					+ 'Consider increasing buf_unit_entries_count');
 		}
 
 		/* add pass_data to record */
