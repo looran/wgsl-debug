@@ -1,9 +1,25 @@
 {
   "name": "wgsl-debug-table",
+  "description": "Extension for wgsl-debug to display debugging data in HTML table",
   "version": "0.0.1",
   "main": "./dist/wgsl-debug-table.umd.js",
   "module": "./dist/wgsl-debug-table.es.js",
   "types": "./wgsl-debug-table.d.ts",
+  "keywords": [
+    "shader",
+    "debug",
+    "print",
+    "webgpu",
+    "wgsl"
+  ],
+  "author": "Laurent Ghigonis",
+  "license": "BSD-3-Clause",
+  "homepage": "https://github.com/looran/wgsl-debug",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/looran/wgsl-debug",
+    "directory": "wgsl-debug-table"
+  },
   "exports": {
     ".": {
       "import": "./dist/wgsl-debug-table.es.js",
@@ -26,6 +42,6 @@
     "vite-plugin-checker": "0.3.4"
   },
   "dependencies": {
-     "wgsl-debug": "../"
+    "wgsl-debug": "^0.0.1"
   }
 }
