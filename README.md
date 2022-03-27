@@ -4,9 +4,9 @@
 |:--:|
 | *[Go to example](https://looran.github.io/wgsl-debug-example/) - [View code](example/main.ts)* |
 
-`wgsl-debug` provides print-like function for [WebGPU](https://www.w3.org/TR/webgpu/) [WGSL](https://www.w3.org/TR/WGSL/) shaders to print numbers through javascript console or user callback.
+[`wgsl-debug`](wgsl-debug.ts) provides print-like function for [WebGPU](https://www.w3.org/TR/webgpu/) [WGSL](https://www.w3.org/TR/WGSL/) shaders to print numbers through javascript console or user callback.
 
-`wgsl-debug-table` provides a component to easily display the debugging data into dynamically updated HTML table.
+[`wgsl-debug-table`](wgsl-debug-table/wgsl-debug-table.ts) provides a component to easily display the debugging data into dynamically updated HTML table.
 
 Internaly it works by copying the debug data from GPU to a buffer, mapped and copied at each pass back to CPU to extract the data.
 
@@ -40,7 +40,7 @@ npm install
 npm run build
 ```
 
-### Example usage: display debug values in HTML table
+### Usage: display debug values in HTML table
 
 You can use [example/main.ts](example/main.ts) to get started:
 ```
@@ -49,7 +49,6 @@ npm install
 npm run build
 npm run preview
 ```
-
 
 #### debugging setup in CPU javascript code
 
@@ -108,7 +107,7 @@ dbg_i32m(my_spurious_var_i, 1); // spurious var i
 dbg_f32m(my_spurious_var_f, 2); // spurious var f
 ```
 
-### Example usage: print debug values in the javascript console
+### Usage: print debug values in the javascript console
 
 Changes for the javascript code:
 
@@ -119,7 +118,7 @@ Changes for the javascript code:
 await debug.post()
 ```
 
-### Example usage: javascript callback function containing debug values
+### Usage: javascript callback function containing debug values
 
 Changes for the javascript code:
 
